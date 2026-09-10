@@ -72,11 +72,11 @@ az resource list --output table
 
 ## Evidence
 
-- `screenshots/01-azure-subscription-overview.png`
-- `screenshots/02-cost-management-budget.png`
-- `screenshots/03-resource-groups-overview.png`
-- `screenshots/04-cloud-shell-bash.png`
-- `screenshots/05-resource-naming-tags.png`
+- ![Azure subscription overview](screenshots/01-azure-subscription-overview.png)
+- ![Cost Management budget](screenshots/02-cost-management-budget.png)
+- ![Resource groups](screenshots/03-resource-groups-overview.png)
+- ![Azure Cloud Shell](screenshots/04-cloud-shell-bash.png)
+- ![Resource naming and tags](screenshots/05-resource-naming-tags.png)
 
 ## Security Notes
 
