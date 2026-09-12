@@ -1,0 +1,25 @@
+# Environment files and secrets
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.cer
+*.crt
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Azure CLI local files
+.azure/
+azureProfile.json
+accessTokens.json
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
