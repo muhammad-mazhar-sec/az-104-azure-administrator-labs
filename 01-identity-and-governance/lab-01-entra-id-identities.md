@@ -77,6 +77,7 @@ I refreshed the Microsoft Entra ID pages and verified that:
 - Guest users are external identities that can be invited into the tenant.
 - User properties such as department, job title, and usage location can support identity administration and access decisions.
 - Dynamic group membership depends on user or device attributes and requires the appropriate licensing.
+- In production, access is preferably assigned to groups rather than individual users because group-based access is easier to review, change, and audit when staff responsibilities change.
 
 ## Job-Relevant Skills Demonstrated
 
