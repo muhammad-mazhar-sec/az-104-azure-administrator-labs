@@ -4,7 +4,7 @@
 **Status:** ✅ Completed  
 **Platform:** Microsoft Azure for Students  
 **Resource group:** `az104-rg3`  
-**Region:** East US
+**Region:** East Asia 
 
 ## Objective
 
@@ -48,7 +48,7 @@ This lab demonstrates Infrastructure as Code (IaC): defining infrastructure in f
 | Bicep disk SKU | StandardSSD_LRS |
 | Disk size | 32 GiB |
 | Source type | None |
-| Region | East US |
+| Region | East Asia  |
 | Availability zone | [record what you used] |
 
 ## ARM Template Parameters
