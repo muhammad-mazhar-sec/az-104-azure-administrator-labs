@@ -120,7 +120,7 @@ TcpTestSucceeded: False
 
 The exact result also depends on the destination NSG and Windows Firewall. Record the source, destination, port, time, and diagnostic result.
 
-![Connectivity test before peering](./lab-05-screenshots/03-connectivity-test-before-peering.png)
+![Connectivity test before peering](./lab-05-screenshots/03-connection-test-before-peering.png)
 
 ### 4. Configure VNet peering
 
