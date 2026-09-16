@@ -87,11 +87,7 @@ Deploy `CoreServicesVM` with the following characteristics:
 - Private address in the `10.0.0.0/24` subnet.
 - NSG attached to the network interface.
 
-Evidence file:
-
-```text
-01-core-services-vm-and-vnet.png
-```
+![Core services VM and VNet](./lab-05-screenshots/01-core-services-vm-and-vnet.png)
 
 ### 2. Deploy the manufacturing VM and network
 
@@ -104,11 +100,7 @@ Deploy `ManufacturingVM` in a separate VNet with:
 - No public inbound ports.
 - Standard B2ats v2 size.
 
-Evidence file:
-
-```text
-02-manufacturing-vm-and-vnet.png
-```
+![Manufacturing VM and VNet](./lab-05-screenshots/02-manufacturing-vm-and-vnet.png)
 
 ### 3. Test connectivity before peering
 
@@ -128,11 +120,7 @@ TcpTestSucceeded: False
 
 The exact result also depends on the destination NSG and Windows Firewall. Record the source, destination, port, time, and diagnostic result.
 
-Evidence file:
-
-```text
-03-connectivity-test-before-peering.png
-```
+![Connectivity test before peering](./lab-05-screenshots/03-connectivity-test-before-peering.png)
 
 ### 4. Configure VNet peering
 
@@ -151,11 +139,7 @@ Verify that both peering objects show:
 Peering status: Connected
 ```
 
-Evidence file:
-
-```text
-04-vnet-peerings-connected.png
-```
+![VNet peerings connected](./lab-05-screenshots/04-vnet-peerings-connected.png)
 
 ### 5. Test connectivity after peering
 
@@ -167,11 +151,7 @@ Test-NetConnection -ComputerName <destination-private-ip> -Port 3389
 
 A successful connection requires the route, NSG, and Windows Firewall to allow the selected port. If the port remains blocked, use Network Watcher and effective-route information to distinguish a routing issue from a security-rule issue.
 
-Evidence file:
-
-```text
-05-test-connection-after-peering.png
-```
+![Test connection after peering](./lab-05-screenshots/05-test-connection-after-peering.png)
 
 ### 6. Create and associate the route table
 
@@ -196,11 +176,7 @@ After creating the route table:
 
 A route table has no traffic effect until it contains a route and is associated with a subnet.
 
-Evidence file:
-
-```text
-06-user-defined-route-and-association.png
-```
+![User-defined route and association](./lab-05-screenshots/06-user-defined-route-and-association.png)
 
 ### 7. Capture the final topology
 
@@ -214,15 +190,9 @@ Open **Resource Visualizer** and select the resources in `az104-rg5`. Confirm th
 - The route table `rt-CoreServices`.
 - The network relationships between these resources.
 
-Evidence file:
-
-```text
-07-azure-vnet-peering-routing-topology.png
-```
+![Azure VNet peering and routing topology](./lab-05-screenshots/07-azure-vnet-peering-routing-topology.png)
 
 ## Evidence directory
-
-The screenshot directory should contain the following files:
 
 ```text
 03-networking/
