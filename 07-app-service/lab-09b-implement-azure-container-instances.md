@@ -2,59 +2,59 @@
 
 ## Overview
 
-This lab demonstrates how to deploy and verify a Linux container using Azure Container Instances (ACI). The deployment uses the Microsoft quickstart Hello World image and exposes it through a public DNS name over HTTP port 80.
+This lab demonstrates the deployment of a Linux container using Azure Container Instances (ACI). The container uses Microsoft’s quickstart Hello World image and exposes a public HTTP endpoint through an Azure-generated DNS name.
 
-The lab was performed as a short, cost-conscious exercise. The container was validated through its public FQDN and container logs, and the lab resources were removed after evidence capture.
+The lab was completed as a short, cost-conscious exercise. The container was validated through its public FQDN, application response, container logs, and resource topology. Temporary resources were removed after evidence capture.
 
 ## Objectives
 
 - Deploy an Azure Container Instance from a Docker image.
-- Configure public HTTP access through a DNS name label.
-- Verify the container is running.
-- Test the application through its public FQDN.
-- Review HTTP GET entries in the container logs.
-- Capture the Azure resource topology.
-- Delete all temporary resources after validation.
+- Configure public HTTP access on port 80.
+- Assign and validate a public DNS name label.
+- Confirm the container is Running.
+- Open the Hello World application.
+- Review HTTP GET entries in container logs.
+- Capture Azure Resource Visualizer evidence.
+- Delete the temporary resource group after validation.
 
 ## Architecture
 
 ```text
-                             Internet browser
-                                    |
-                                    | HTTP / TCP 80
-                                    v
+                         Internet browser
+                                |
+                                | HTTP / TCP 80
+                                v
        <dns-label>.<region>.azurecontainer.io
-                                    |
-                                    v
+                                |
+                                v
                     Azure Container Instance
                               az104-c1
-                                    |
-                                    v
+                                |
+                                v
        mcr.microsoft.com/azuredocs/aci-helloworld:latest
-                                    |
-                                    v
-                 Welcome to Azure Container Instance
-                                    |
-                                    v
-                         Container HTTP logs
+                                |
+                                v
+              Welcome to Azure Container Instance
+                                |
+                                v
+                     HTTP GET container logs
 ```
 
 ## Resource Inventory
 
-| Resource | Value |
+| Resource | Configuration |
 |---|---|
-| Resource group | `az104-rg9` or the resource group used during deployment |
-| Container name | `az104-c1` |
+| Resource group | The temporary group used for Lab 09b |
+| Container instance | `az104-c1` |
 | Operating system | Linux |
 | Image source | Quickstart images |
-| Container image | `mcr.microsoft.com/azuredocs/aci-helloworld:latest` |
+| Image | `mcr.microsoft.com/azuredocs/aci-helloworld:latest` |
 | Public protocol | HTTP |
 | Public port | 80 |
 | DNS | Globally unique DNS name label |
-| Monitoring logs | Disabled to avoid extra Log Analytics usage |
-| Region | East Asia or another available region |
+| Container instance logs | Disabled during deployment |
 
-## Deployment Configuration
+## Deployment
 
 The container instance was configured with:
 
@@ -70,53 +70,18 @@ DNS name label: Globally unique label
 Container instance logs: Disabled
 ```
 
-The DNS label creates an FQDN similar to:
+The application FQDN was copied from the Container Instance Overview page after deployment. The exact FQDN is deployment-specific and is intentionally not hard-coded in this document.
 
-```text
-<dns-label>.<region>.azurecontainer.io
-```
+## Verification
 
-The exact FQDN must be copied from the Azure Container Instance Overview page because the region and label are deployment-specific.
+After deployment, the following checks were completed:
 
-## Task 1: Deploy the Container Instance
-
-In the Azure portal, open:
-
-```text
-Container instances → Create
-```
-
-Use the resource group and container name shown in the Resource Inventory table. Choose the Linux Hello World quickstart image and configure public HTTP port 80.
-
-On the Monitoring page, keep container instance logs disabled for this short lab. Built-in container logs can still be viewed from the resource’s **Containers → Logs** blade after deployment.
-
-## Task 2: Verify the Deployment
-
-After deployment:
-
-1. Open the container instance resource.
-2. Confirm the status is:
-   
-   ```text
-   Running
-   ```
-
-3. Copy the FQDN from Overview.
-4. Open the FQDN in a browser using HTTP.
-5. Confirm the page displays:
-   
-   ```text
-   Welcome to Azure Container Instance
-   ```
-
-6. Refresh the page several times.
-7. Open:
-   
-   ```text
-   Containers → Logs
-   ```
-
-8. Verify that HTTP GET entries were generated by the browser requests.
+1. Container status showed `Running`.
+2. The public FQDN opened in a browser.
+3. The page displayed the Azure Container Instance Hello World application.
+4. The page was refreshed to generate HTTP requests.
+5. The Containers → Logs blade showed HTTP GET entries.
+6. Azure Resource Visualizer displayed the deployed container resource.
 
 ## Evidence
 
@@ -126,49 +91,37 @@ The screenshots are stored in:
 07-app-service/lab-09b-screenshots/
 ```
 
-The Markdown file is stored in the parent directory:
+This Markdown file is stored in the parent directory:
 
 ```text
 07-app-service/lab-09b-implement-azure-container-instances.md
 ```
 
-Because the Markdown file and screenshot directory are siblings, use this exact image syntax:
+Because the Markdown file and screenshot directory are siblings, all image references use this exact format:
 
 ```markdown
 ![Description](lab-09b-screenshots/filename.png)
 ```
 
-Do not prefix the path with `07-app-service/`; that would repeat the parent directory.
+### Deployment Review
 
-### Running Container and FQDN
+![ACI deployment review and create](lab-09b-screenshots/01-aci-overview-and-create.png)
+
+### Running Status and FQDN
 
 ![ACI overview showing running status and FQDN](lab-09b-screenshots/02-aci-overview-running-fqdn.png)
 
 ### Hello World Application
 
-![Azure Container Instance Hello World page](lab-09b-screenshots/03-aci-hello-world-page.png)
+![ACI Hello World application page](lab-09b-screenshots/03-aci-hello-world-page.png)
 
 ### Container HTTP Logs
 
-![Azure Container Instance HTTP logs](lab-09b-screenshots/04-aci-container-http-logs.png)
+![ACI container HTTP logs](lab-09b-screenshots/04-aci-container-http-logs.png)
 
 ### Resource Topology
 
-![Azure Container Instance resource topology](lab-09b-screenshots/05-aci-resource-topology.png)
-
-### Additional Deployment Evidence
-
-The screenshot directory also contains an additional timestamped image:
-
-```text
-2026-09-21_21-55.png
-```
-
-If this image documents the deployment or configuration, embed it with:
-
-```markdown
-![Additional ACI deployment evidence](lab-09b-screenshots/2026-09-21_21-55.png)
-```
+![ACI resource topology](lab-09b-screenshots/05-aci-resource-topology.png)
 
 ## Evidence Directory
 
@@ -176,57 +129,53 @@ If this image documents the deployment or configuration, embed it with:
 07-app-service/
 ├── lab-09a-implement-web-apps.md
 ├── lab-09a-screenshots/
-└── lab-09b-implement-azure-container-instances.md
-    └── lab-09b-screenshots/
-        ├── 02-aci-overview-running-fqdn.png
-        ├── 03-aci-hello-world-page.png
-        ├── 04-aci-container-http-logs.png
-        ├── 05-aci-resource-topology.png
-        └── 2026-09-21_21-55.png
+├── lab-09b-implement-azure-container-instances.md
+├── lab-09b-screenshots/
+│   ├── 01-aci-overview-and-create.png
+│   ├── 02-aci-overview-running-fqdn.png
+│   ├── 03-aci-hello-world-page.png
+│   ├── 04-aci-container-http-logs.png
+│   └── 05-aci-resource-topology.png
+├── lab-09c-implement-container-apps.md
+└── lab-09c-screenshots/
 ```
 
 ## Cost Control
 
-Azure Container Instances uses per-second billing based on the vCPU and memory requested by the container group. The container should not be left running after the lab. No Log Analytics workspace was enabled, and no additional monitoring services were deployed.
+The quickstart container was used with minimal resources. Container instance logs were not connected to Log Analytics. The application was tested briefly and the resource group was deleted afterward.
 
-Use a small quickstart container, perform the browser and log tests, capture evidence, and delete the resource group immediately afterward.
+Azure Container Instances charges according to allocated vCPU and memory while the container group runs. Deleting the resource group prevents the container from continuing to incur compute charges.
 
 ## Troubleshooting
 
-### Container is not Running
+### The container is not Running
 
-Check the Container Instance Overview and Events pages. Confirm that the image name is correct and that the region can pull the image.
+Review the container Events page and confirm that the image name is correct and available in the selected region.
 
-### FQDN does not open
+### The FQDN does not open
 
-Check that:
+Confirm that:
 
 - The container status is Running.
-- The DNS name label is globally unique.
-- HTTP port 80 is exposed.
-- The URL uses the exact FQDN shown in Overview.
-- The browser uses `http://`, not an incorrect custom hostname.
+- The DNS label is globally unique.
+- TCP port 80 is exposed.
+- The exact FQDN from Overview is being used.
+- The browser uses `http://`.
 
 ### Logs are empty
 
-Refresh the application page several times, wait briefly, and refresh the Logs blade. Confirm that container instance logs were not redirected to an unavailable Log Analytics workspace.
+Refresh the application page multiple times, wait briefly, and refresh the Logs blade. HTTP GET entries are generated only after requests reach the container.
 
 ## Cleanup
 
-After saving all screenshots, delete the resource group used for this lab:
+After evidence capture, delete the complete resource group used for the lab:
 
 ```bash
-az group delete --name az104-rg9 --yes --no-wait
+az group delete --name <lab-09b-resource-group> --yes --no-wait
 ```
 
-If you used a separate resource group such as `az104-rg9b`, delete that name instead:
-
-```bash
-az group delete --name az104-rg9b --yes --no-wait
-```
-
-Deleting the complete resource group removes the container instance and prevents continued container compute charges.
+Replace `<lab-09b-resource-group>` with the exact resource-group name shown in the Azure portal. Deleting the full group removes the container instance and prevents continued charges.
 
 ## Expected Outcome
 
-The lab demonstrates a lightweight serverless container deployment using Azure Container Instances. The container runs a public Hello World web application, responds through a generated DNS name, and records HTTP GET activity in its container logs.
+The lab demonstrates a lightweight container deployment using Azure Container Instances. The container runs a public Hello World web application, responds through a generated DNS name, records HTTP GET activity in its logs, and is removed after validation.
